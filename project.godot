@@ -28,6 +28,7 @@ _global_script_class_icons={
 
 config/name="Platform_test"
 run/main_scene="res://Scene_1.tscn"
+boot_splash/use_filter=false
 config/icon="res://icon.png"
 
 [display]
