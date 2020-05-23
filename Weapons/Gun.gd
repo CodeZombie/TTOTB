@@ -3,12 +3,12 @@ onready var spriteContainer = get_node("Sprite Container")
 onready var gunSprite = get_node("Sprite Container/Gun Sprite")
 onready var gunOutline = get_node("Sprite Container/Gun Outline")
 onready var gunshotSoundPlayer = get_node("GunshotPlayer2d")
-onready var hitScanner = get_node("Sprite Container/HitScanner")
 onready var rateOfFireTimer = get_node("RateOfFireTimer")
 onready var Muzzleflash = preload("res://Weapons/MuzzleFlash.tscn")
-onready var BulletHit = preload("res://Weapons/BulletHit.tscn")
+onready var Bullet = preload("res://Weapons/Bullet.tscn")
 var equipped = false
 var gunLogic =  FiniteStateMachine.new()
+const gun_length = 24
 
 # STATES:	
 func enter_state_fire_round():
@@ -17,8 +17,11 @@ func enter_state_fire_round():
 	add_child(mf)
 	rateOfFireTimer.start()
 	gunshotSoundPlayer.play()
-	#Enable the hitscanner
-	hitScanner.enabled = true
+	
+	var bullet = Bullet.instance()
+	bullet.position = get_global_position() + (Vector2(cos(get_global_rotation()), sin(get_global_rotation())) * gun_length) #emit the bullet from the barrel of the gun
+	bullet.rotation = get_global_rotation()
+	get_tree().get_root().add_child(bullet)
 	
 func is_equipped():
 	return equipped
@@ -42,16 +45,6 @@ func _ready():
 
 
 func _process(delta):
-	if(hitScanner.enabled):
-		if(hitScanner.is_colliding()):
-			var bulletHit = BulletHit.instance()
-			bulletHit.position = hitScanner.get_collision_point()
-			var direction = Vector2( cos(get_global_rotation()), sin(get_global_rotation()) )
-			bulletHit.set_muzzle_position(get_global_position() + (direction * 24) )
-			
-			get_tree().get_root().add_child(bulletHit)
-	hitScanner.enabled = false
-			
 	gunLogic.update()
 	look_at(get_global_mouse_position())
 	var real_rotation = abs(int(rad2deg(global_rotation)) % 360)

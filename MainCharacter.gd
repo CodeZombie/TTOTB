@@ -4,8 +4,8 @@ const GRAVITY = 800
 const WALK_SPEED = 150
 const JUMP_SPEED = 350
 const FRICTION = 30
-onready var ANIMATEDSPRITE = get_node("AnimatedSprite")
-onready var Arm = get_node("Arm")
+onready var animated_sprite = get_node("AnimatedSprite")
+onready var arm = get_node("Arm")
 
 
 ###########
@@ -19,33 +19,31 @@ func _ready():
 	set_physics_process(true)
 	
 func handle_animation():
-
 	if(velocity.x > 0):
-		ANIMATEDSPRITE.set_flip_h(false)
+		animated_sprite.set_flip_h(false)
 	elif(velocity.x < 0):
-		ANIMATEDSPRITE.set_flip_h(true)
+		animated_sprite.set_flip_h(true)
 		
 	if(velocity.y > 0): #falling
-		ANIMATEDSPRITE.set_animation("falling")
+		animated_sprite.set_animation("falling")
 	elif(velocity.y < 0): #jumping
-		ANIMATEDSPRITE.set_animation("jumping")
+		animated_sprite.set_animation("jumping")
 	elif(velocity.x == 0):
-		ANIMATEDSPRITE.set_animation("idle")
+		animated_sprite.set_animation("idle")
 	else:
-		ANIMATEDSPRITE.set_animation("walk")
+		animated_sprite.set_animation("walk")
 	
-	if (ANIMATEDSPRITE.animation == "walk"):
-		if(ANIMATEDSPRITE.frame == 0 or ANIMATEDSPRITE.frame == 2):
-			Arm.position.y = 2
+	if (animated_sprite.animation == "walk"):
+		if(animated_sprite.frame == 0 or animated_sprite.frame == 2):
+			arm.position.y = 2
 		else:
-			Arm.position.y = 0
+			arm.position.y = 0
 	else:
-		Arm.position.y = 0
+		arm.position.y = 0
 
 
 func _physics_process(delta):
-	#move hands
-	Arm.look_at(get_global_mouse_position())
+	arm.look_at(get_global_mouse_position())
 	
 	velocity.y += delta * GRAVITY
 

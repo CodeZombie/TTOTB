@@ -28,10 +28,6 @@ vframes = 8
 hframes = 8
 frame = 16
 
-[node name="HitScanner" type="RayCast2D" parent="Sprite Container"]
-cast_to = Vector2( 1024, 0 )
-collide_with_areas = true
-
 [node name="RateOfFireTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
