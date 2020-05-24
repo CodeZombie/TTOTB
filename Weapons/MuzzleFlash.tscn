@@ -8,6 +8,7 @@ position = Vector2( 6, 0 )
 scale = Vector2( 2, 2 )
 z_index = 2
 texture = ExtResource( 1 )
+offset = Vector2( 4, 0 )
 hframes = 2
 script = ExtResource( 2 )
 

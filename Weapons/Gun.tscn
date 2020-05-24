@@ -12,13 +12,13 @@ random_pitch = 1.05
 script = ExtResource( 3 )
 
 [node name="Sprite Container" type="Node2D" parent="."]
-position = Vector2( 0, 1 )
 
 [node name="Gun Sprite" type="Sprite" parent="Sprite Container"]
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 vframes = 8
 hframes = 8
+frame = 9
 
 [node name="Gun Outline" type="Sprite" parent="Sprite Container"]
 scale = Vector2( 2, 2 )
@@ -26,7 +26,10 @@ z_index = -1
 texture = ExtResource( 2 )
 vframes = 8
 hframes = 8
-frame = 16
+frame = 25
+
+[node name="Muzzle" type="Position2D" parent="Sprite Container"]
+position = Vector2( 16, -1 )
 
 [node name="RateOfFireTimer" type="Timer" parent="."]
 wait_time = 0.1
