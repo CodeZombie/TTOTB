@@ -1,6 +1,7 @@
 extends KinematicBody2D
 export var gravity = 800
 export var walk_speed = 150
+export var run_speed = 200
 export var jump_speed = 350
 export var friction = 30
 onready var animated_sprite = get_node("AnimatedSprite")
@@ -29,6 +30,8 @@ func process_animation():
 		animated_sprite.set_animation("idle")
 	else:
 		animated_sprite.set_animation("walking")
+		animated_sprite.speed_scale = abs(velocity.x)/150
+		#animated_sprite.set_animation_speed("walking", velocity.x/20)
 	
 	if (animated_sprite.animation == "walking"):
 		if(animated_sprite.frame == 0 or animated_sprite.frame == 2):
@@ -48,6 +51,14 @@ func _physics_process(delta):
 func jump():
 	if(is_on_floor()):
 		velocity.y = -jump_speed
+
+func halt_jump():
+	if velocity.y < 0:
+		velocity.y = velocity.y/2
 		
 func walk(dir):
 	velocity.x = dir * walk_speed
+	
+func run(dir):
+	#if is_on_floor():
+	velocity.x = dir * run_speed

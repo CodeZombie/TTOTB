@@ -8,12 +8,12 @@ onready var rate_of_fire_timer = get_node("RateOfFireTimer")
 onready var muzzle = get_node("Sprite Container/Muzzle")
 
 var equipped = false
-var gunLogic =  FiniteStateMachine.new()
+#var gunLogic =  FiniteStateMachine.new()
 
 var trigger_pressed = false
 
 # STATES:	
-func enter_state_fire_round():
+func fire_round():
 	var muzzle_flash = Muzzleflash.instance()
 	muzzle_flash.position = to_local(muzzle.get_global_position())
 	add_child(muzzle_flash)
@@ -42,10 +42,10 @@ func is_finished_firing_round():
 
 func _ready():
 	equipped = true
-	gunLogic.register_state(self, "can_fire", null)
-	gunLogic.register_state(self, "fire_round", null, "enter_state_fire_round")
-	gunLogic.register_transition(self, "can_fire", "fire_round", "is_holding_trigger")
-	gunLogic.register_transition(self, "fire_round", "can_fire", "is_finished_firing_round")
+	#gunLogic.register_state(self, "can_fire", null)
+	#gunLogic.register_state(self, "fire_round", null, "enter_state_fire_round")
+	#gunLogic.register_transition(self, "can_fire", "fire_round", "is_holding_trigger")
+	#gunLogic.register_transition(self, "fire_round", "can_fire", "is_finished_firing_round")
 	pass # Replace with function body.
 
 func connect_signals(parent):
@@ -60,7 +60,7 @@ func on_release_trigger():
 
 func _process(delta):
 	sprite_container.position = sprite_container.position.linear_interpolate(position, delta * 10)
-	gunLogic.update()
+	#gunLogic.update()
 	
 	var real_rotation = abs(int(rad2deg(global_rotation)) % 360)
 

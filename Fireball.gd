@@ -13,7 +13,7 @@ func set_direction(direction):
 		direction = -1
 	velocity.x = direction * SPEED
 	
-func _process(delta):
+func _process(_delta):
 	if(velocity.x > 0):
 		ANIMATEDSPRITE.set_flip_h(false)
 	if(velocity.x < 0):
