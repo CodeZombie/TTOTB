@@ -11,6 +11,8 @@ var arm_y_offset = 0
 
 signal hold_trigger()
 signal release_trigger()
+signal drop_item()
+signal equip_item(parent)
 
 func _ready():
 	arm_y_offset = arm.position.y

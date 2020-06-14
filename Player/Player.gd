@@ -1,10 +1,8 @@
 extends "res://Actor/Actor.gd"
 onready var path_checker = get_node("PathChecker")
 
-
 func _ready():
 	get_node("Arm/Hand/Gun").connect_signals(self)
-	pass # Replace with function body.
 
 func _process(delta):
 	#if(path_checker.can_travel_right()):
@@ -35,3 +33,6 @@ func _process(delta):
 		
 	if Input.is_action_just_released("ui_click"):
 		emit_signal("release_trigger")
+		
+	if Input.is_action_just_pressed("drop_item"):
+		emit_signal("drop_item")

@@ -18,15 +18,12 @@ func _ready():
 		push_error("State 'Target' cannot resolve to null")
 	else:
 		if not on_enter_method_name.empty():
-			print("Setting the on_enter")
 			self.on_enter_method = funcref(self.target, self.on_enter_method_name)
 			
 		if not on_update_method_name.empty():
-			print("Setting the on_update")
 			self.on_update_method = funcref(self.target, self.on_update_method_name)
 			
 		if not on_exit_method_name.empty():
-			print("Setting the on_exit")
 			self.on_exit_method = funcref(self.target, self.on_exit_method_name)
 		
 func on_enter():

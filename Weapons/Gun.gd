@@ -7,8 +7,9 @@ onready var gunshot_sound_player = get_node("GunshotPlayer2d")
 onready var rate_of_fire_timer = get_node("RateOfFireTimer")
 onready var muzzle = get_node("Sprite Container/Muzzle")
 
+onready var collisionshape = get_node("CollisionShape2D")
+
 var equipped = false
-#var gunLogic =  FiniteStateMachine.new()
 
 var trigger_pressed = false
 
@@ -20,7 +21,8 @@ func fire_round():
 	
 	var bullet = Bullet.instance()
 	bullet.position = muzzle.get_global_position()
-	bullet.rotation = get_global_rotation()
+	
+	bullet.rotation = self.global_rotation #get_global_rotation()
 	get_tree().get_root().add_child(bullet)
 	
 	rate_of_fire_timer.start()
@@ -41,16 +43,15 @@ func is_finished_firing_round():
 	return rate_of_fire_timer.is_stopped()
 
 func _ready():
-	equipped = true
-	#gunLogic.register_state(self, "can_fire", null)
-	#gunLogic.register_state(self, "fire_round", null, "enter_state_fire_round")
-	#gunLogic.register_transition(self, "can_fire", "fire_round", "is_holding_trigger")
-	#gunLogic.register_transition(self, "fire_round", "can_fire", "is_finished_firing_round")
-	pass # Replace with function body.
+	on_equip()
 
 func connect_signals(parent):
 	parent.connect("hold_trigger", self, "on_hold_trigger")
 	parent.connect("release_trigger", self, "on_release_trigger")
+	
+	parent.connect("drop_item", self, "on_drop")
+	parent.connect("equip_item", self, "on_equip")
+	print("Attached signals.")
 	
 func on_hold_trigger():
 	trigger_pressed = true
@@ -58,13 +59,34 @@ func on_hold_trigger():
 func on_release_trigger():
 	trigger_pressed = false
 
-func _process(delta):
-	sprite_container.position = sprite_container.position.linear_interpolate(position, delta * 10)
-	#gunLogic.update()
+func on_equip():
+	self.mode = RigidBody2D.MODE_STATIC
+	equipped = true
+	collisionshape.disabled = true
 	
-	var real_rotation = abs(int(rad2deg(global_rotation)) % 360)
+func on_drop():
+	#detach all signals.
+	#enable collision with world
+	
+	#re-parent to root
+	#preserve position
+	var current_position = self.global_position
+	var new_parent = get_tree().get_root()
+	self.get_parent().remove_child(self)
+	new_parent.add_child(self)
+	self.position = current_position
+	collisionshape.disabled = false
+	
+	self.mode = RigidBody2D.MODE_RIGID
+	equipped = false
 
-	if(real_rotation > 90 and real_rotation < 270):
-		sprite_container.set_scale(Vector2(1, -1))
-	else:
-		sprite_container.set_scale(Vector2(1, 1))
+func _process(delta):
+	if equipped:
+		sprite_container.position = sprite_container.position.linear_interpolate(position, delta * 10)
+		
+		var real_rotation = abs(int(rad2deg(global_rotation)) % 360)
+	
+		if(real_rotation > 90 and real_rotation < 270):
+			sprite_container.set_scale(Vector2(1, -1))
+		else:
+			sprite_container.set_scale(Vector2(1, 1))
