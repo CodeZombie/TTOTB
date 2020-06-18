@@ -28,7 +28,8 @@ func fire_round():
 	rate_of_fire_timer.start()
 	gunshot_sound_player.play()
 	
-	sprite_container.position.x = -2
+	#sprite_container.position.x -= 2
+	self.position.x -= 2
 	
 func is_equipped():
 	return equipped
@@ -43,8 +44,9 @@ func is_finished_firing_round():
 	return rate_of_fire_timer.is_stopped()
 
 func _ready():
-	on_equip()
-
+	#on_equip()
+	pass
+	
 func connect_signals(parent):
 	parent.connect("hold_trigger", self, "on_hold_trigger")
 	parent.connect("release_trigger", self, "on_release_trigger")
@@ -82,8 +84,8 @@ func on_drop():
 
 func _process(delta):
 	if equipped:
-		sprite_container.position = sprite_container.position.linear_interpolate(position, delta * 10)
-		
+		#sprite_container.position = sprite_container.position.linear_interpolate(position, delta * 10)
+		self.position = self.position.linear_interpolate(Vector2(0,0), delta * 10)
 		var real_rotation = abs(int(rad2deg(global_rotation)) % 360)
 	
 		if(real_rotation > 90 and real_rotation < 270):
