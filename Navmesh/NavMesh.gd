@@ -1,5 +1,7 @@
 extends Node2D
 class_name NavMesh
+# https://www.redblobgames.com/pathfinding/a-star/introduction.html
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,21 +30,18 @@ func get_navigation_path(start_position, end_position, jump_height, move_speed):
 		for child_node in current.node.connected_nodes:
 			if visited_nodes.has(child_node) == false:
 				frontier.append(create_waypoint(child_node, current))
+				
 		frontier.erase(current)
 		visited_nodes.append(current.node)
+		
 		if(current.node == end_node):
 			var step = current
 			var path = [step.node]
 			while(step.parent != null):
 				step = step.parent
 				path.append(step.node)
-			
-			for i in range(len(path)):
-				var val = (i+1)/len(path)
-				path[i].draw_color = Color(0, 0, 0)
-				path[i].update()
-				
-		
+			path.invert()
+			return path
 
 
 func create_waypoint(node, parent):

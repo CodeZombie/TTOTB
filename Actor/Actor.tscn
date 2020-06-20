@@ -22,7 +22,7 @@ animations = [ {
 collision_layer = 2
 script = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
@@ -34,3 +34,9 @@ animation = "idle"
 
 [node name="Hand" type="Node2D" parent="Arm"]
 position = Vector2( 16, 0 )
+
+[node name="FallRaycast" type="RayCast2D" parent="."]
+position = Vector2( 8, 0 )
+enabled = true
+cast_to = Vector2( 0, 64 )
+collide_with_areas = true

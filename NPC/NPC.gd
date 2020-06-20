@@ -38,8 +38,9 @@ func _ready():
 
 func _on_timer_timeout():
 	print("TIMER")
-	navmesh.get_navigation_path(global_position, Vector2(500, -352), 64, 64)
+	set_path(navmesh.get_navigation_path(global_position, Vector2(500, -352), 64, 64))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	state_wander()
+	#state_wander()
+	pass
