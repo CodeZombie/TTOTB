@@ -4,7 +4,6 @@ class_name NavMesh_Node
 export(NodePath) var connected_to_1
 
 # The problem is calling <navmesh_node>.connected_nodes from a different node ALWAYS returns an empty array.
-
 var draw_color = Color(255, 0, 0)
 var connected_nodes = Array()
 
@@ -16,13 +15,12 @@ func _ready():
 		connected_to.add_neighbor(self)
 
 func _draw():
-	print("d")
-	#@if Engine.is_editor_hint():
-	draw_line(Vector2(-16, 0), Vector2(16, 0), draw_color, 3)
-	draw_line(Vector2(0, -16), Vector2(0, 16), draw_color, 3)
 	
-	for other in connected_nodes:
-		draw_line(Vector2(0, 0), other.position - global_position, Color(0, 0, 255), 2)
+	if Engine.is_editor_hint():
+		draw_line(Vector2(-16, 0), Vector2(16, 0), draw_color, 3)
+		draw_line(Vector2(0, -16), Vector2(0, 16), draw_color, 3)
+		for other in connected_nodes:
+			draw_line(Vector2(0, 0), other.position - global_position, Color(255, 0, 0, .2), 1)
 
 func add_neighbor(other):
 	for neighbor in connected_nodes:

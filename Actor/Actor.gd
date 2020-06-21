@@ -58,17 +58,19 @@ func process_animation():
 		arm.position.y = arm_y_offset
 
 func _process(delta):
-	walk_path()	
 	process_animation()
 	
 func _physics_process(delta):
+	walk_path()	
 	velocity.y += delta * gravity
 	velocity = move_and_slide(velocity, Vector2(0, -1))
+	#if walking_a_path() and velocity == Vector2(0, 0):
+	#	jump()
 	if jumping and is_on_floor():
 		jumping = false
 
 func jump():
-	if(is_on_floor()):
+	if not jumping and is_on_floor():
 		velocity.y = -jump_speed
 		jumping = true
 
@@ -92,26 +94,37 @@ func _draw():
 func walk_path():
 	if self.path == null or self.path.empty():
 		return
+
 	self.path[0].draw_color = Color(0, 255, 0)
 	self.path[0].update()
-	#get next node in path
-	#move toward the node
-	#	if your next move in that direction will cause you to fall:
-	#		if your goal is above you: Jump and move in that direction
-	#		if your goal is below you: Move forward enough to fall, and wait until you hit the ground.
-	#Once you touch the target node, remove it from the path and Continue;
-	#once at the last or second last node, start checking for path completion.
-	#return the remaining path
-	print(jumping)
-	var x_direction = -1	#Move left
-	if self.global_position.x < path[0].global_position.x:	#If the goal is to the right
-		x_direction = 1	#Move right
-	if not jumping:
-		if fall_raycast.is_colliding() == false: #If our next move will cause us to fall:
-				jump()
-				x_direction = 0
-	if abs(global_position.x - path[0].global_position.x) < 8:
+	var node_trigger_distance = 8
+	
+	#If we're close to the next node...
+	if global_position.distance_to(path[0].global_position) <= node_trigger_distance*2 and is_on_floor():
 		path.pop_front()
+		if path.empty():
+			walk(0)
+			return path
+		
+
+	var x_direction = velocity.normalized().x #Default direction is to just keep moving in the previous direction.
+	if abs(self.global_position.x - path[0].global_position.x) >= node_trigger_distance:
+		if self.global_position.x <= path[0].global_position.x:	#If the goal is to the right
+			x_direction = 1	#Move right
+			print("Right")
+		else:
+			print("Leftf")
+			x_direction = -1 #Move left
+	print(x_direction)
+	#If we're not in the middle of jumping, and our next move will cause us to fall:
+	if not jumping and fall_raycast.is_colliding() == false:
+		jump()
+		x_direction = 0
+				
+	#if the next node is above us, jump
+	if path[0].global_position.y - global_position.y < -16:
+		jump()
+		
 	if not path.empty():
 		walk(x_direction)
 	else:

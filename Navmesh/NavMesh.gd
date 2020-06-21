@@ -41,6 +41,10 @@ func get_navigation_path(start_position, end_position, jump_height, move_speed):
 				step = step.parent
 				path.append(step.node)
 			path.invert()
+			
+			for node in path:
+				node.draw_color = Color(0, 0, 255)
+				node.update()
 			return path
 
 

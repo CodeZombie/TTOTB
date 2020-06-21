@@ -1,11 +1,11 @@
 extends "res://Actor/Actor.gd"
-onready var path_checker = get_node("PathChecker")
 
 func _ready():
 	get_node("Arm/Hand/Gun").connect_signals(self)
 	get_node("Arm/Hand/Gun").on_equip()
 
 func _process(delta):
+
 	#if(path_checker.can_travel_right()):
 	#	print(path_checker.get_travel_right_global_position())
 	arm.look_at(get_global_mouse_position())
