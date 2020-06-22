@@ -2,6 +2,7 @@ tool
 extends Node2D
 class_name NavMesh_Node
 export(NodePath) var connected_to_1
+export(NodePath) var connected_to_2
 
 # The problem is calling <navmesh_node>.connected_nodes from a different node ALWAYS returns an empty array.
 var draw_color = Color(255, 0, 0)
@@ -10,9 +11,14 @@ var connected_nodes = Array()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if connected_to_1.is_empty() == false:
-		var connected_to = get_node(connected_to_1)
-		add_neighbor(connected_to)
-		connected_to.add_neighbor(self)
+		var con_1 = get_node(connected_to_1)
+		add_neighbor(con_1)
+		con_1.add_neighbor(self)
+		
+	if connected_to_2.is_empty() == false:
+		var con_2 = get_node(connected_to_2)
+		add_neighbor(con_2)
+		con_2.add_neighbor(self)
 
 func _draw():
 	

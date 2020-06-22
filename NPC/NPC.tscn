@@ -31,11 +31,11 @@ region = Rect2( 48, 0, 16, 24 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 2 )
-region = Rect2( 48, 24, 16, 24 )
+region = Rect2( 32, 24, 16, 24 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 2 )
-region = Rect2( 32, 24, 16, 24 )
+region = Rect2( 48, 24, 16, 24 )
 
 [sub_resource type="SpriteFrames" id=9]
 animations = [ {
@@ -51,12 +51,12 @@ animations = [ {
 }, {
 "frames": [ SubResource( 7 ) ],
 "loop": true,
-"name": "jumping",
+"name": "falling",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 8 ) ],
 "loop": true,
-"name": "falling",
+"name": "jumping",
 "speed": 5.0
 } ]
 

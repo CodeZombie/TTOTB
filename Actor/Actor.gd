@@ -26,7 +26,6 @@ func walking_a_path():
 	return path.empty() == false
 	
 func set_path(path):
-	print(path)
 	self.path = path
 
 func process_animation():
@@ -86,10 +85,38 @@ func run(dir):
 	velocity.x = dir * run_speed
 
 
-func _draw():
-	draw_rect(Rect2(Vector2(0,0), collision_shape.shape.extents), Color(0, 255, 0))
-	
-	#collision_shape.extents
+func will_land_on_point(point):
+	var direction = 1
+	if(global_position.x > point.x):
+		direction = -1
+		
+	var trajectory_point = Vector2(0,0)
+	var max_attempts = 256
+	var attempts = 0
+
+	while true:
+		if attempts >= max_attempts:
+			return false
+			
+		var x = trajectory_point.x + direction
+		var t = (x+walk_speed) / walk_speed
+		var y = -(t*t*((-gravity)*.5)) + (t*(-gravity)) + (gravity*.5)
+		trajectory_point = Vector2(x,y)
+		#see if this trajectory point has hit or missed the point:
+		if direction == 1:
+			if to_global(trajectory_point).x >= point.x: #if the trajectory has passed the point
+				if to_global(trajectory_point).y <= point.y: #if we're at or above the Point
+					return true
+				else:
+					return false
+		else:
+			if to_global(trajectory_point).x <= point.x:
+				if to_global(trajectory_point).y <= point.y:
+					return true
+				else:
+					return false
+		attempts += 1
+	return false
 
 func walk_path():
 	if self.path == null or self.path.empty():
@@ -105,25 +132,28 @@ func walk_path():
 		if path.empty():
 			walk(0)
 			return path
-		
 
 	var x_direction = velocity.normalized().x #Default direction is to just keep moving in the previous direction.
 	if abs(self.global_position.x - path[0].global_position.x) >= node_trigger_distance:
 		if self.global_position.x <= path[0].global_position.x:	#If the goal is to the right
 			x_direction = 1	#Move right
-			print("Right")
 		else:
-			print("Leftf")
 			x_direction = -1 #Move left
-	print(x_direction)
+	
+	var will_land_on_next_node = will_land_on_point(path[0].global_position)
+	
 	#If we're not in the middle of jumping, and our next move will cause us to fall:
-	if not jumping and fall_raycast.is_colliding() == false:
+	if not jumping and fall_raycast.is_colliding() == false and not will_land_on_next_node:
 		jump()
 		x_direction = 0
 				
 	#if the next node is above us, jump
 	if path[0].global_position.y - global_position.y < -16:
 		jump()
+		
+	if jumping:
+		if will_land_on_next_node:
+			halt_jump()
 		
 	if not path.empty():
 		walk(x_direction)
