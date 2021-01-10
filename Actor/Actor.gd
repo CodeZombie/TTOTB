@@ -13,6 +13,8 @@ var arm_y_offset = 0
 var path = []
 var jumping = false
 
+var last_distance_to_next_node = -1
+
 signal hold_trigger()
 signal release_trigger()
 signal drop_item()
@@ -121,7 +123,7 @@ func will_land_on_point(point):
 func walk_path():
 	if self.path == null or self.path.empty():
 		return
-
+	
 	self.path[0].draw_color = Color(0, 255, 0)
 	self.path[0].update()
 	var node_trigger_distance = 8
@@ -129,9 +131,22 @@ func walk_path():
 	#If we're close to the next node...
 	if global_position.distance_to(path[0].global_position) <= node_trigger_distance*2 and is_on_floor():
 		path.pop_front()
+		last_distance_to_next_node = -1
 		if path.empty():
 			walk(0)
+			last_distance_to_next_node = -1
 			return path
+	
+	if last_distance_to_next_node == -1 or last_distance_to_next_node > global_position.distance_to(path[0].global_position):
+		last_distance_to_next_node = global_position.distance_to(path[0].global_position)
+		
+	#this 16 should be replaced with jump_height when that becomes available.
+	if last_distance_to_next_node - global_position.distance_to(path[0].global_position) < -16:
+		walk(0)
+		last_distance_to_next_node = -1
+		set_path(null)
+		#if we are to do something on path fail, it should be here.
+		return path
 
 	var x_direction = velocity.normalized().x #Default direction is to just keep moving in the previous direction.
 	if abs(self.global_position.x - path[0].global_position.x) >= node_trigger_distance:

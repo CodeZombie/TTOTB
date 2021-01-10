@@ -211,6 +211,11 @@ points = PoolVector2Array( 2, 0, 14, 0, 14, 16, 2, 16 )
 0/autotile/z_index_map = [  ]
 0/occluder_offset = Vector2( 0, 0 )
 0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 12 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
 0/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
@@ -535,11 +540,13 @@ script = ExtResource( 7 )
 position = Vector2( -392, -544 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node2")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node9" type="Node2D" parent="NavMesh2"]
 position = Vector2( -440, -448 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../../NavMesh2/NavMesh_Node")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node10" type="Node2D" parent="NavMesh2"]
 position = Vector2( -360, -312 )
@@ -551,96 +558,115 @@ connected_to_2 = NodePath("../NavMesh_Node62")
 position = Vector2( -200, -312 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node10")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node2" type="Node2D" parent="NavMesh2"]
 position = Vector2( -152, -544 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../../NavMesh2/NavMesh_Node3")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node3" type="Node2D" parent="NavMesh2"]
 position = Vector2( -96, -504 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../../NavMesh2/NavMesh_Node4")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node4" type="Node2D" parent="NavMesh2"]
 position = Vector2( -24, -472 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../../NavMesh2/NavMesh_Node5")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node5" type="Node2D" parent="NavMesh2"]
 position = Vector2( 72, -440 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../../NavMesh2/NavMesh_Node6")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node6" type="Node2D" parent="NavMesh2"]
 position = Vector2( 144, -408 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../../NavMesh2/NavMesh_Node7")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node7" type="Node2D" parent="NavMesh2"]
 position = Vector2( 240, -352 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../../NavMesh2/NavMesh_Node8")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node12" type="Node2D" parent="NavMesh2"]
 position = Vector2( 176, -280 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node7")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node15" type="Node2D" parent="NavMesh2"]
 position = Vector2( 208, -248 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node12")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node16" type="Node2D" parent="NavMesh2"]
 position = Vector2( 240, -216 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node15")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node17" type="Node2D" parent="NavMesh2"]
 position = Vector2( 288, -184 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node16")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node19" type="Node2D" parent="NavMesh2"]
 position = Vector2( 360, -128 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node17")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node31" type="Node2D" parent="NavMesh2"]
 position = Vector2( 336, -56 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node19")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node24" type="Node2D" parent="NavMesh2"]
 position = Vector2( 272, 8 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node31")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node25" type="Node2D" parent="NavMesh2"]
 position = Vector2( 224, 40 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node24")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node26" type="Node2D" parent="NavMesh2"]
 position = Vector2( 176, 40 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node25")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node27" type="Node2D" parent="NavMesh2"]
 position = Vector2( 176, -56 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node24")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node28" type="Node2D" parent="NavMesh2"]
 position = Vector2( 80, -88 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node27")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node29" type="Node2D" parent="NavMesh2"]
 position = Vector2( -24, -120 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node28")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node30" type="Node2D" parent="NavMesh2"]
 position = Vector2( -120, -152 )
@@ -652,141 +678,169 @@ connected_to_2 = NodePath("../NavMesh_Node60")
 position = Vector2( 432, -128 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node19")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node23" type="Node2D" parent="NavMesh2"]
 position = Vector2( 480, 72 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node22")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node32" type="Node2D" parent="NavMesh2"]
 position = Vector2( 680, 72 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node23")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node33" type="Node2D" parent="NavMesh2"]
 position = Vector2( 736, 40 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node32")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node34" type="Node2D" parent="NavMesh2"]
 position = Vector2( 872, 40 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node33")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node35" type="Node2D" parent="NavMesh2"]
 position = Vector2( 840, 104 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node34")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node36" type="Node2D" parent="NavMesh2"]
 position = Vector2( 808, 168 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node35")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node37" type="Node2D" parent="NavMesh2"]
 position = Vector2( 776, 232 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node36")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node38" type="Node2D" parent="NavMesh2"]
 position = Vector2( 744, 296 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node37")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node40" type="Node2D" parent="NavMesh2"]
 position = Vector2( 720, 360 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node38")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node41" type="Node2D" parent="NavMesh2"]
 position = Vector2( 576, 360 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node40")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node42" type="Node2D" parent="NavMesh2"]
 position = Vector2( 528, 328 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node41")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node43" type="Node2D" parent="NavMesh2"]
 position = Vector2( 480, 392 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node42")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node44" type="Node2D" parent="NavMesh2"]
 position = Vector2( 288, 392 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node43")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node45" type="Node2D" parent="NavMesh2"]
 position = Vector2( 104, 392 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node44")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node46" type="Node2D" parent="NavMesh2"]
 position = Vector2( -120, 392 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node45")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node47" type="Node2D" parent="NavMesh2"]
 position = Vector2( -312, 392 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node46")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node48" type="Node2D" parent="NavMesh2"]
 position = Vector2( -584, 392 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node49")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node50" type="Node2D" parent="NavMesh2"]
 position = Vector2( -616, 328 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node48")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node51" type="Node2D" parent="NavMesh2"]
 position = Vector2( -536, 264 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node50")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node52" type="Node2D" parent="NavMesh2"]
 position = Vector2( -616, 200 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node51")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node53" type="Node2D" parent="NavMesh2"]
 position = Vector2( -528, 136 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node52")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node54" type="Node2D" parent="NavMesh2"]
 position = Vector2( -472, 136 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node53")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node55" type="Node2D" parent="NavMesh2"]
 position = Vector2( -440, 72 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node54")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node91" type="Node2D" parent="NavMesh2"]
 position = Vector2( -528, 8 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node55")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node92" type="Node2D" parent="NavMesh2"]
 position = Vector2( -616, 8 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node91")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node93" type="Node2D" parent="NavMesh2"]
 position = Vector2( -648, -56 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node92")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node94" type="Node2D" parent="NavMesh2"]
 position = Vector2( -712, -120 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node93")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node56" type="Node2D" parent="NavMesh2"]
 position = Vector2( -360, 72 )
@@ -798,116 +852,139 @@ connected_to_2 = NodePath("../NavMesh_Node66")
 position = Vector2( -328, 136 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node67")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node67" type="Node2D" parent="NavMesh2"]
 position = Vector2( -216, 136 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node68")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node68" type="Node2D" parent="NavMesh2"]
 position = Vector2( -168, 200 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node69")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node69" type="Node2D" parent="NavMesh2"]
 position = Vector2( -96, 232 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node70")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node70" type="Node2D" parent="NavMesh2"]
 position = Vector2( -24, 232 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node71")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node71" type="Node2D" parent="NavMesh2"]
 position = Vector2( 8, 200 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node72")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node72" type="Node2D" parent="NavMesh2"]
 position = Vector2( 40, 168 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node73")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node73" type="Node2D" parent="NavMesh2"]
 position = Vector2( 72, 136 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node74")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node74" type="Node2D" parent="NavMesh2"]
 position = Vector2( 104, 104 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node75")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node75" type="Node2D" parent="NavMesh2"]
 position = Vector2( 136, 72 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node26")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node57" type="Node2D" parent="NavMesh2"]
 position = Vector2( -248, 8 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node56")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node58" type="Node2D" parent="NavMesh2"]
 position = Vector2( -216, -56 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node57")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node60" type="Node2D" parent="NavMesh2"]
 position = Vector2( -184, -120 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node58")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node59" type="Node2D" parent="NavMesh2"]
 position = Vector2( -296, -120 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node60")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node61" type="Node2D" parent="NavMesh2"]
 position = Vector2( -336, -152 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node59")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node62" type="Node2D" parent="NavMesh2"]
 position = Vector2( -408, -152 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node61")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node65" type="Node2D" parent="NavMesh2"]
 position = Vector2( -464, -152 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node62")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node63" type="Node2D" parent="NavMesh2"]
 position = Vector2( -496, -216 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node65")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node64" type="Node2D" parent="NavMesh2"]
 position = Vector2( -560, -216 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node63")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node49" type="Node2D" parent="NavMesh2"]
 position = Vector2( -448, 392 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node47")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node39" type="Node2D" parent="NavMesh2"]
 position = Vector2( 656, 232 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node37")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node13" type="Node2D" parent="NavMesh2"]
 position = Vector2( 96, -256 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node12")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node14" type="Node2D" parent="NavMesh2"]
 position = Vector2( -96, -256 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node13")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node8" type="Node2D" parent="NavMesh2"]
 position = Vector2( 568, -352 )
@@ -919,117 +996,142 @@ connected_to_2 = NodePath("../NavMesh_Node76")
 position = Vector2( 600, -280 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node77")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node77" type="Node2D" parent="NavMesh2"]
 position = Vector2( 664, -216 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node78")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node78" type="Node2D" parent="NavMesh2"]
 position = Vector2( 760, -152 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node79")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node79" type="Node2D" parent="NavMesh2"]
 position = Vector2( 840, -152 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node81")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node80" type="Node2D" parent="NavMesh2"]
 position = Vector2( 968, -152 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node81")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node81" type="Node2D" parent="NavMesh2"]
 position = Vector2( 936, -88 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node82")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node82" type="Node2D" parent="NavMesh2"]
 position = Vector2( 904, -24 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node34")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node18" type="Node2D" parent="NavMesh2"]
 position = Vector2( 648, -408 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node20")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node20" type="Node2D" parent="NavMesh2"]
 position = Vector2( 712, -440 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node21")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node21" type="Node2D" parent="NavMesh2"]
 position = Vector2( 840, -472 )
 script = ExtResource( 3 )
+connected_to_1 = NodePath("")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node83" type="Node2D" parent="NavMesh2"]
 position = Vector2( 936, -472 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node21")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node84" type="Node2D" parent="NavMesh2"]
 position = Vector2( 976, -536 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node83")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node85" type="Node2D" parent="NavMesh2"]
 position = Vector2( 904, -568 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node84")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node86" type="Node2D" parent="NavMesh2"]
 position = Vector2( 856, -600 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node85")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node87" type="Node2D" parent="NavMesh2"]
 position = Vector2( 824, -632 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node86")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node88" type="Node2D" parent="NavMesh2"]
 position = Vector2( 792, -664 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node87")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node89" type="Node2D" parent="NavMesh2"]
 position = Vector2( 744, -696 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node88")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node95" type="Node2D" parent="NavMesh2"]
 position = Vector2( 624, -696 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node89")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node96" type="Node2D" parent="NavMesh2"]
 position = Vector2( 512, -696 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node95")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node97" type="Node2D" parent="NavMesh2"]
 position = Vector2( 400, -696 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node96")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node98" type="Node2D" parent="NavMesh2"]
 position = Vector2( 272, -696 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node97")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node99" type="Node2D" parent="NavMesh2"]
 position = Vector2( 160, -696 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node98")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node100" type="Node2D" parent="NavMesh2"]
 position = Vector2( 48, -696 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node99")
+connected_to_2 = NodePath("")
 
 [node name="NavMesh_Node90" type="Node2D" parent="NavMesh2"]
 position = Vector2( 920, -696 )
 script = ExtResource( 3 )
 connected_to_1 = NodePath("../NavMesh_Node88")
+connected_to_2 = NodePath("")
