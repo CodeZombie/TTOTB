@@ -1,4 +1,4 @@
-extends Node2D
+extends RigidBody2D
 onready var Muzzleflash = preload("res://Weapons/MuzzleFlash.tscn")
 onready var Bullet = preload("res://Weapons/Bullet.tscn")
 
@@ -59,7 +59,7 @@ func equip(parent, hand):
 	self.get_parent().remove_child(self)
 	hand.add_child(self)
 	self.position = Vector2(0,0)
-	
+	self.rotation = 0
 	self.mode = RigidBody2D.MODE_STATIC
 	equipped = true
 	collisionshape.disabled = true
@@ -80,6 +80,9 @@ func on_drop(parent):
 	collisionshape.disabled = false #enable collision with world
 	self.mode = RigidBody2D.MODE_RIGID
 	equipped = false
+	
+	apply_impulse(Vector2(0, 0), (global_position - parent.global_position ).normalized()*64)
+	
 
 func _process(delta):
 	if equipped:

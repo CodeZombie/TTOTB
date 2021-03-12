@@ -65,6 +65,7 @@ script = ExtResource( 3 )
 
 [node name="AnimatedSprite" parent="." index="1"]
 frames = SubResource( 9 )
+frame = 1
 playing = true
 
 [node name="Arm" parent="." index="3"]
