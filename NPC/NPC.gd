@@ -30,12 +30,18 @@ func state_wander() -> void:
 		emit_signal("release_trigger")
 
 func _ready():
-	get_node("Arm/Hand/Gun").connect_signals(self)
-	get_node("Arm/Hand/Gun").on_equip()
+	get_node("Arm/Hand/Gun").equip(self, hand)
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	#state_wander()
 	arm_face_direction()
+	#if Input.is_action_just_pressed("ui_click"):
+	#	emit_signal("hold_trigger")
+		
+	#if Input.is_action_just_released("ui_click"):
+	#	emit_signal("release_trigger")
+		
 	if Input.is_action_just_pressed("follow"):
 		set_path(navmesh.get_navigation_path(global_position, node_to_follow.global_position, 64, 64))
 	

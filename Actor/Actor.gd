@@ -6,19 +6,21 @@ export var jump_speed = 350
 export var friction = 30
 onready var animated_sprite = get_node("AnimatedSprite")
 onready var arm = get_node("Arm")
+onready var hand = get_node("Arm/Hand")
 onready var fall_raycast = get_node("FallRaycast")
 onready var collision_shape = get_node("CollisionShape")
+onready var pickup_collider = get_node("PickupCollider")
 var velocity = Vector2()
 var arm_y_offset = 0
 var path = []
 var jumping = false
+var equipped_item = false
 
 var last_distance_to_next_node = -1
 
 signal hold_trigger()
 signal release_trigger()
 signal drop_item()
-signal equip_item(parent)
 
 func _ready():
 	arm_y_offset = arm.position.y
@@ -60,6 +62,14 @@ func process_animation():
 
 func _process(delta):
 	process_animation()
+	
+func get_pickupable_items():
+	var pickupable = []
+	for body in pickup_collider.get_overlapping_bodies():
+		if body.is_in_group("pickupable"):
+			if !body.is_equipped():
+				pickupable.append(body)
+	return pickupable
 	
 func _physics_process(delta):
 	walk_path()	

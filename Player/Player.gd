@@ -1,11 +1,9 @@
 extends "res://Actor/Actor.gd"
 
 func _ready():
-	get_node("Arm/Hand/Gun").connect_signals(self)
-	get_node("Arm/Hand/Gun").on_equip()
+	get_node("Arm/Hand/Gun").equip(self, hand)
 
 func _process(delta):
-	print(global_position.y)
 	#if(path_checker.can_travel_right()):
 	#	print(path_checker.get_travel_right_global_position())
 	arm.look_at(get_global_mouse_position())
@@ -35,5 +33,11 @@ func _process(delta):
 	if Input.is_action_just_released("ui_click"):
 		emit_signal("release_trigger")
 		
+	if Input.is_action_just_pressed("pickup_item"):
+		var pickupable = get_pickupable_items()
+		if pickupable.size() > 0:
+			pickupable[0].equip(self, hand)
+		
 	if Input.is_action_just_pressed("drop_item"):
-		emit_signal("drop_item")
+		emit_signal("drop_item", self)
+		

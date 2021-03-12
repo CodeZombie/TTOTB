@@ -18,4 +18,5 @@ autostart = true
 [node name="Hit Scanner" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( 512, 0 )
+collision_mask = 3
 collide_with_areas = true

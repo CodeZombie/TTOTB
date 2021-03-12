@@ -13,6 +13,7 @@ var equipped = false
 
 var trigger_pressed = false
 
+var current_parent
 # STATES:	
 func fire_round():
 	var muzzle_flash = Muzzleflash.instance()
@@ -26,6 +27,7 @@ func fire_round():
 	get_tree().get_root().add_child(bullet)
 	
 	rate_of_fire_timer.start()
+	rate_of_fire_timer.wait_time = 0.1 + rand_range(-.025, .025)
 	gunshot_sound_player.play()
 	
 	#sprite_container.position.x -= 2
@@ -42,43 +44,40 @@ func is_holding_trigger():
 	
 func is_finished_firing_round():
 	return rate_of_fire_timer.is_stopped()
-
+	
 func _ready():
-	#on_equip()
 	pass
 	
-func connect_signals(parent):
-	parent.connect("hold_trigger", self, "on_hold_trigger")
-	parent.connect("release_trigger", self, "on_release_trigger")
-	
-	parent.connect("drop_item", self, "on_drop")
-	parent.connect("equip_item", self, "on_equip")
-	print("Attached signals.")
-	
+#Actor integration/Signals:
 func on_hold_trigger():
 	trigger_pressed = true
 	
 func on_release_trigger():
 	trigger_pressed = false
 
-func on_equip():
+func equip(parent, hand):
+	self.get_parent().remove_child(self)
+	hand.add_child(self)
+	self.position = Vector2(0,0)
+	
 	self.mode = RigidBody2D.MODE_STATIC
 	equipped = true
 	collisionshape.disabled = true
+	parent.connect("hold_trigger", self, "on_hold_trigger")
+	parent.connect("release_trigger", self, "on_release_trigger")
+	parent.connect("drop_item", self, "on_drop")
 	
-func on_drop():
-	#detach all signals.
-	#enable collision with world
-	
-	#re-parent to root
-	#preserve position
-	var current_position = self.global_position
+func on_drop(parent):
+	trigger_pressed = false #Release the trigger, obviously
+	parent.disconnect("hold_trigger", self, "on_hold_trigger")#detach all signals.
+	parent.disconnect("release_trigger", self, "on_release_trigger")
+	parent.disconnect("drop_item", self, "on_drop")
+	var current_position = self.global_position #preserve position after reparent
 	var new_parent = get_tree().get_root()
 	self.get_parent().remove_child(self)
 	new_parent.add_child(self)
 	self.position = current_position
-	collisionshape.disabled = false
-	
+	collisionshape.disabled = false #enable collision with world
 	self.mode = RigidBody2D.MODE_RIGID
 	equipped = false
 

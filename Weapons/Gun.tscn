@@ -14,8 +14,11 @@ extents = Vector2( 16, 6 )
 audio_stream = ExtResource( 1 )
 random_pitch = 1.05
 
-[node name="Gun" type="RigidBody2D"]
-collision_layer = 4
+[node name="Gun" type="RigidBody2D" groups=[
+"pickupable",
+]]
+collision_layer = 0
+collision_mask = 5
 script = ExtResource( 3 )
 
 [node name="RateOfFireTimer" type="Timer" parent="."]
@@ -55,16 +58,16 @@ shape = SubResource( 1 )
 [node name="Gun Sprite" type="Sprite" parent="Sprite Container"]
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
-vframes = 8
 hframes = 8
+vframes = 8
 frame = 9
 
 [node name="Gun Outline" type="Sprite" parent="Sprite Container"]
 scale = Vector2( 2, 2 )
 z_index = -1
 texture = ExtResource( 2 )
-vframes = 8
 hframes = 8
+vframes = 8
 frame = 25
 
 [node name="Muzzle" type="Position2D" parent="Sprite Container"]
