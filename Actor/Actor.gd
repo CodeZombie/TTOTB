@@ -70,6 +70,16 @@ func get_pickupable_items():
 			if !body.is_equipped():
 				pickupable.append(body)
 	return pickupable
+
+func equip(item):
+	if item.is_in_group("pickupable"):
+		item.equip(self, hand)
+		equipped_item = true
+		
+func drop():
+	if equipped_item:
+		emit_signal("drop_item", self)
+		equipped_item = false
 	
 func _physics_process(delta):
 	walk_path()	

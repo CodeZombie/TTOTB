@@ -1,8 +1,9 @@
 extends "res://Actor/Actor.gd"
 
 func _ready():
-	get_node("Arm/Hand/Gun").equip(self, hand)
-
+	#equip(get_node("Arm/Hand/Gun"))
+	pass
+	
 func _process(delta):
 	#if(path_checker.can_travel_right()):
 	#	print(path_checker.get_travel_right_global_position())
@@ -34,10 +35,10 @@ func _process(delta):
 		emit_signal("release_trigger")
 		
 	if Input.is_action_just_pressed("pickup_item"):
-		var pickupable = get_pickupable_items()
-		if pickupable.size() > 0:
-			pickupable[0].equip(self, hand)
-		
-	if Input.is_action_just_pressed("drop_item"):
-		emit_signal("drop_item", self)
+		if equipped_item:
+			drop()
+		else:
+			var pickupable = get_pickupable_items()
+			if pickupable.size() > 0:
+				equip(pickupable[0])
 		

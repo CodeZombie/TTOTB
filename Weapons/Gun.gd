@@ -13,34 +13,15 @@ var equipped = false
 
 var trigger_pressed = false
 
-var current_parent
 # STATES:	
 func fire_round():
-	var muzzle_flash = Muzzleflash.instance()
-	muzzle_flash.position = to_local(muzzle.get_global_position())
-	add_child(muzzle_flash)
-	
-	var bullet = Bullet.instance()
-	bullet.position = muzzle.get_global_position()
-	
-	bullet.rotation = self.global_rotation #get_global_rotation()
-	get_tree().get_root().add_child(bullet)
-	
-	rate_of_fire_timer.start()
-	rate_of_fire_timer.wait_time = 0.1 + rand_range(-.025, .025)
-	gunshot_sound_player.play()
-	
-	#sprite_container.position.x -= 2
-	self.position.x -= 2
+	pass
 	
 func is_equipped():
 	return equipped
 	
 func is_holding_trigger():
-	#if equipped:
-	if trigger_pressed:
-		return true
-	return false
+	return trigger_pressed
 	
 func is_finished_firing_round():
 	return rate_of_fire_timer.is_stopped()
@@ -48,7 +29,21 @@ func is_finished_firing_round():
 func _ready():
 	pass
 	
-#Actor integration/Signals:
+func create_muzzleflash():
+	var muzzle_flash = Muzzleflash.instance()
+	muzzle_flash.position = to_local(muzzle.get_global_position())
+	add_child(muzzle_flash)
+	
+func create_bullet(additional_rotation = 0):
+	var bullet = Bullet.instance()
+	bullet.position = muzzle.get_global_position()
+	bullet.rotation = self.global_rotation + additional_rotation
+	get_tree().get_root().add_child(bullet)
+	
+func rate_of_fire_wait(time):
+	rate_of_fire_timer.start()
+	rate_of_fire_timer.wait_time = time
+	
 func on_hold_trigger():
 	trigger_pressed = true
 	

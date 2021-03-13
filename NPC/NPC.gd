@@ -30,7 +30,8 @@ func state_wander() -> void:
 		emit_signal("release_trigger")
 
 func _ready():
-	get_node("Arm/Hand/Gun").equip(self, hand)
+	equip(get_node("Arm/Hand/Gun"))
+
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
