@@ -57,16 +57,27 @@ func get_navigation_path(start_position, end_position, jump_height, move_speed):
 			path.invert()
 			
 			#remove first waypoint if its behind the start_position
+			
 			if path.size() > 1:
 				if path[1].x > path[0].x:
 					if start_position.x > path[0].x:
-						path.pop_front()	
+						path.pop_front()
+						path.push_front(start_position)
 				elif path[1].x < path[0].x:
 					if start_position.x < path[0].x:
 						path.pop_front()
-			
+						path.push_front(start_position)
+				#remove last waypoint if its out of the way of the end_position
+			if path.size() > 1:
+				if path[-2].x > path[-1].x:
+					if end_position.x > path[-1].x:
+						path.pop_back()
+				elif path[-2].x < path[-1].x:
+					if end_position.x < path[-1].x:
+						path.pop_back()
+			#insert real end_position into the path
+			path.push_back(end_position)
 			return path
-
 
 func create_waypoint(node, parent):
 	return {
