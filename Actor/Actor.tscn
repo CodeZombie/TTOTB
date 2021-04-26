@@ -48,5 +48,5 @@ position = Vector2( 16, 0 )
 [node name="FallRaycast" type="RayCast2D" parent="."]
 position = Vector2( 8, 0 )
 enabled = true
-cast_to = Vector2( 0, 64 )
+cast_to = Vector2( 0, 40 )
 collide_with_areas = true

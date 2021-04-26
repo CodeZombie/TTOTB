@@ -16,5 +16,8 @@ frame = 9
 [node name="Gun Outline" parent="Sprite Container" index="1"]
 frame = 25
 
+[node name="Muzzle" parent="Sprite Container" index="2"]
+position = Vector2( 26, -1.5 )
+
 [node name="GunshotPlayer2d" parent="." index="4"]
 stream = ExtResource( 3 )
