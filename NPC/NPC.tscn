@@ -65,10 +65,12 @@ script = ExtResource( 3 )
 
 [node name="AnimatedSprite" parent="." index="1"]
 frames = SubResource( 9 )
-frame = 1
 playing = true
 
 [node name="Arm" parent="." index="3"]
 position = Vector2( 0, 6 )
 
 [node name="Gun" parent="Arm/Hand" index="0" instance=ExtResource( 4 )]
+
+[node name="FallRaycast" parent="." index="4"]
+cast_to = Vector2( 0, 32 )

@@ -5,6 +5,7 @@ func _ready():
 	pass
 	
 func _process(delta):
+
 	#if(path_checker.can_travel_right()):
 	#	print(path_checker.get_travel_right_global_position())
 	arm.look_at(get_global_mouse_position())
@@ -42,3 +43,5 @@ func _process(delta):
 			if pickupable.size() > 0:
 				equip(pickupable[0])
 		
+func _draw():
+	draw_line(Vector2(0,0), Vector2(0, -jump_height), Color(1, 0, 0), 2)

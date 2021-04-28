@@ -8,6 +8,9 @@ onready var state_machine =  FiniteStateMachine.new()
 
 var wander_direction = 1
 
+func is_npc():
+	return true
+
 func arm_face_direction():
 	if(velocity.x < 0):
 		arm.set_rotation(-3.14159)
@@ -44,5 +47,5 @@ func _process(delta):
 	#	emit_signal("release_trigger")
 		
 	if Input.is_action_just_pressed("follow"):
-		set_path(navmesh.get_navigation_path(global_position, node_to_follow.global_position, 64, 64))
+		set_path(navmesh.get_navigation_path(global_position, node_to_follow.global_position, jump_height, 64))
 	

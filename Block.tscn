@@ -19,6 +19,6 @@ shape = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="StaticBody2D"]
 scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
-vframes = 5
 hframes = 8
+vframes = 5
 frame = 25

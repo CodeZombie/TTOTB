@@ -35,4 +35,5 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 4 )
 frame = 1
+
 [connection signal="body_entered" from="." to="." method="_on_Fireball_body_entered"]

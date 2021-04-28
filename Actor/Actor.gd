@@ -2,7 +2,8 @@ extends KinematicBody2D
 export var gravity = 800
 export var walk_speed = 150
 export var run_speed = 200
-export var jump_speed = 350
+
+export var jump_height = 100
 export var friction = 30
 onready var animated_sprite = get_node("AnimatedSprite")
 onready var arm = get_node("Arm")
@@ -92,7 +93,7 @@ func _physics_process(delta):
 
 func jump():
 	if not jumping and is_on_floor():
-		velocity.y = -jump_speed
+		velocity.y = -sqrt(2.0 * gravity * jump_height)
 		jumping = true
 
 func halt_jump():
@@ -145,13 +146,16 @@ func walk_path():
 		return
 	
 	#self.path[0].update()
-	var node_trigger_distance = 8
+	var node_trigger_distance = 32
 	
 	#If we're close to the next node...
-	if global_position.distance_to(path[0]) <= node_trigger_distance*2 and is_on_floor():
+	#if global_position.distance_to(path[0]) <= node_trigger_distance and is_on_floor():
+	if abs(global_position.x - path[0].x) < 4.0 and abs(global_position.y - path[0].y) < node_trigger_distance and is_on_floor():
+		print("We're close to the next node. Continue..." + String(path.size()))
 		path.pop_front()
 		last_distance_to_next_node = -1
 		if path.empty():
+			print("Path empty. Ending")
 			walk(0)
 			last_distance_to_next_node = -1
 			return path
@@ -160,7 +164,8 @@ func walk_path():
 		last_distance_to_next_node = global_position.distance_to(path[0])
 		
 	#this 16 should be replaced with jump_height when that becomes available.
-	if last_distance_to_next_node - global_position.distance_to(path[0]) < -16:
+	if last_distance_to_next_node - global_position.distance_to(path[0]) < -16 and not jumping:
+		print("Path failed.")
 		walk(0)
 		last_distance_to_next_node = -1
 		set_path(null)
@@ -168,21 +173,26 @@ func walk_path():
 		return path
 
 	var x_direction = velocity.normalized().x #Default direction is to just keep moving in the previous direction.
-	if abs(self.global_position.x - path[0].x) >= node_trigger_distance:
-		if self.global_position.x <= path[0].x:	#If the goal is to the right
+	if abs(self.global_position.x - path[0].x) > 4.0:
+	#print(String(global_position.x) + " " + String(path[0].x) + " " + String(is_on_floor()))
+		if self.global_position.x < path[0].x:	#If the goal is to the right
 			x_direction = 1	#Move right
 		else:
 			x_direction = -1 #Move left
-	
+	else:
+		x_direction = 0
+		
 	var will_land_on_next_node = will_land_on_point(path[0])
 	
 	#If we're not in the middle of jumping, and our next move will cause us to fall:
-	if not jumping and fall_raycast.is_colliding() == false and not will_land_on_next_node:
+	if not jumping and not fall_raycast.is_colliding() and not will_land_on_next_node:
+		print("We're about to fall. Jump.")
 		jump()
-		x_direction = 0
+		#x_direction = 0
 				
 	#if the next node is above us, jump
 	if path[0].y - global_position.y < -16:
+		print("Its above us. Jump")
 		jump()
 		
 	if jumping:
