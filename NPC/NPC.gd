@@ -49,3 +49,6 @@ func _process(delta):
 	if Input.is_action_just_pressed("follow"):
 		set_path(navmesh.get_navigation_path(global_position, node_to_follow.global_position, jump_height, 64))
 	
+func _input(event):
+	if event is InputEventMouseButton:
+		set_path(navmesh.get_navigation_path(global_position, get_global_mouse_position(), jump_height, 64))
