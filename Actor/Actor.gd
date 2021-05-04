@@ -44,15 +44,18 @@ func shot(sourcePosition):
 		explode(2, 3, (global_position - sourcePosition).normalized())
 	
 func explode(hframes, vframes, direction):
+	var actorSize = animated_sprite.frames.animations[0].frames[0].get_size()
+	actorSize.x *= animated_sprite.scale.x
+	actorSize.y *= animated_sprite.scale.y
+	
 	for n in vframes * hframes:
 		var gib = GibScene.instance()
-		gib.initialize(global_position, hframes, vframes, 2, n, animated_sprite.frames.animations[0].frames[0], direction, rand_range(200, 550), animated_sprite.flip_h)
+		gib.initialize(global_position, Vector2(hframes, vframes), Vector2(2,2), actorSize, animated_sprite.frames.animations[0].frames[0], direction, rand_range(200, 550), animated_sprite.flip_h)
 		get_parent().add_child(gib)
 		
-	for n in 16:
+	for n in 128:
 		var gib = GibScene.instance()
-		print(gibsTexture)
-		gib.initialize(global_position, 4, 4, 1, n, gibsTexture, direction, rand_range(200, 550), false)
+		gib.initialize(global_position, Vector2(4,4), Vector2(1,1), actorSize, gibsTexture, direction, rand_range(200, 550), false)
 		get_parent().add_child(gib)
 
 	get_parent().remove_child(self)
