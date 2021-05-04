@@ -8,6 +8,9 @@ func _ready():
 	hit_scanner.force_raycast_update()
 	if(hit_scanner.is_colliding()):
 		shot_line.set_point_position(1, to_local(hit_scanner.get_collision_point()) )
+		var other = hit_scanner.get_collider()
+		if other.has_method("shot"):
+			other.shot(global_position)
 	
 func _process(delta):
 	shot_line.width = destroy_timer.time_left * 3

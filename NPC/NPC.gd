@@ -50,5 +50,5 @@ func _process(delta):
 		set_path(navmesh.get_navigation_path(global_position, node_to_follow.global_position, jump_height, 64))
 	
 func _input(event):
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton and event.button_index == BUTTON_RIGHT:
 		set_path(navmesh.get_navigation_path(global_position, get_global_mouse_position(), jump_height, 64))

@@ -42,6 +42,3 @@ func _process(delta):
 			var pickupable = get_pickupable_items()
 			if pickupable.size() > 0:
 				equip(pickupable[0])
-		
-func _draw():
-	draw_line(Vector2(0,0), Vector2(0, -jump_height), Color(1, 0, 0), 2)

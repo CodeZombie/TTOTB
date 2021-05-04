@@ -11,6 +11,9 @@ onready var hand = get_node("Arm/Hand")
 onready var fall_raycast = get_node("FallRaycast")
 onready var collision_shape = get_node("CollisionShape")
 onready var pickup_collider = get_node("PickupCollider")
+
+const GibScene = preload("res://Actor/Gib.tscn")
+
 var velocity = Vector2()
 var arm_y_offset = 0
 var path = []
@@ -29,6 +32,26 @@ func _ready():
 
 func walking_a_path():
 	return path.empty() == false
+	
+func shot(sourcePosition):
+	print("Shot lol")
+	explode(2, 3, (global_position - sourcePosition).normalized())
+	
+func explode(hframes, vframes, direction):
+	print("Died lol")
+
+	for n in vframes * hframes:
+		var gib = GibScene.instance()
+		var gibTexture = animated_sprite.frames.animations[0].frames[0]
+		gib.initialize(n, gibTexture, direction * rand_range(200, 550))
+		var gibTextureWidth = gibTexture.get_width()
+		var gibTextureHeight = gibTexture.get_height()
+		gib.position.x = (global_position.x - gibTextureWidth/2) + (n % hframes * ((gibTextureWidth * gib.get_node("Sprite").scale.x)/hframes))
+		gib.position.y = (global_position.y - gibTextureHeight/2) + (floor(n / hframes) * ((gibTextureHeight * gib.get_node("Sprite").scale.y)/vframes))
+		get_parent().add_child(gib)
+
+	get_parent().remove_child(self)
+	pass
 	
 func set_path(path):
 	self.path = path
