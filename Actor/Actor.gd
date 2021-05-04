@@ -25,6 +25,8 @@ var equipped_item = false
 
 var last_distance_to_next_node = -1
 
+var health = 100
+
 signal hold_trigger()
 signal release_trigger()
 signal drop_item()
@@ -37,21 +39,20 @@ func walking_a_path():
 	return path.empty() == false
 	
 func shot(sourcePosition):
-	print("Shot lol")
-	explode(2, 3, (global_position - sourcePosition).normalized())
+	health -= 15
+	if health <= 0:
+		explode(2, 3, (global_position - sourcePosition).normalized())
 	
 func explode(hframes, vframes, direction):
-	print("Died lol")
-
 	for n in vframes * hframes:
 		var gib = GibScene.instance()
-		gib.initialize(global_position, hframes, vframes, 2, n, animated_sprite.frames.animations[0].frames[0], direction * rand_range(200, 550))
+		gib.initialize(global_position, hframes, vframes, 2, n, animated_sprite.frames.animations[0].frames[0], direction, rand_range(200, 550), animated_sprite.flip_h)
 		get_parent().add_child(gib)
 		
 	for n in 16:
 		var gib = GibScene.instance()
 		print(gibsTexture)
-		gib.initialize(global_position, 4, 4, 1, n, gibsTexture, direction * rand_range(200, 550))
+		gib.initialize(global_position, 4, 4, 1, n, gibsTexture, direction, rand_range(200, 550), false)
 		get_parent().add_child(gib)
 
 	get_parent().remove_child(self)

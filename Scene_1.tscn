@@ -1134,6 +1134,10 @@ connected_node_paths = [ NodePath("../node_a"), NodePath("../node_0") ]
 position = Vector2( 385.821, -440.724 )
 navmesh_node_path = NodePath("../TestNavmesh")
 
+[node name="NPC3" parent="." instance=ExtResource( 4 )]
+position = Vector2( -49.4292, -275.424 )
+navmesh_node_path = NodePath("../TestNavmesh")
+
 [node name="NPC2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 486.492, -450.524 )
 navmesh_node_path = NodePath("../TestNavmesh")
