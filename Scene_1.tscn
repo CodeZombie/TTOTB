@@ -524,31 +524,7 @@ tile_data = PoolIntArray( -1638433, 0, 196615, -1703905, 0, 196615, -1572897, 0,
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 27.7461, -506.809 )
 collision_layer = 1
-
-[node name="NPC2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 318.454, -460.712 )
-navmesh_node_path = NodePath("../TestNavmesh")
-_node_to_follow = NodePath("../Player")
-
-[node name="NPC3" parent="." instance=ExtResource( 4 )]
-position = Vector2( 475.698, -475.857 )
-navmesh_node_path = NodePath("../TestNavmesh")
-_node_to_follow = NodePath("../Player")
-
-[node name="NPC4" parent="." instance=ExtResource( 4 )]
-position = Vector2( 391.062, -545.793 )
-navmesh_node_path = NodePath("../TestNavmesh")
-_node_to_follow = NodePath("../Player")
-
-[node name="NPC5" parent="." instance=ExtResource( 4 )]
-position = Vector2( 743.858, -477.194 )
-navmesh_node_path = NodePath("../TestNavmesh")
-_node_to_follow = NodePath("../Player")
-
-[node name="NPC6" parent="." instance=ExtResource( 4 )]
-position = Vector2( 35.5938, -294.559 )
-navmesh_node_path = NodePath("../TestNavmesh")
-_node_to_follow = NodePath("../Player")
+gibsTexture = null
 
 [node name="Gun2" parent="." instance=ExtResource( 8 )]
 position = Vector2( 92, -570 )
@@ -1153,3 +1129,11 @@ connected_node_paths = [ NodePath("../node_62"), NodePath("../node_f") ]
 position = Vector2( -153.46, -537.383 )
 script = ExtResource( 3 )
 connected_node_paths = [ NodePath("../node_a"), NodePath("../node_0") ]
+
+[node name="NPC" parent="." instance=ExtResource( 4 )]
+position = Vector2( 385.821, -440.724 )
+navmesh_node_path = NodePath("../TestNavmesh")
+
+[node name="NPC2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 486.492, -450.524 )
+navmesh_node_path = NodePath("../TestNavmesh")

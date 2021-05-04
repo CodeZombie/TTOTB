@@ -4,8 +4,8 @@
 [ext_resource path="res://Actor/Gib.gd" type="Script" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 8.0
-height = 8.0
+radius = 4.0
+height = 4.0
 
 [node name="Gib" type="RigidBody2D"]
 collision_layer = 0
@@ -17,7 +17,6 @@ script = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 hframes = 2
 vframes = 3
